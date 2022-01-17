@@ -4,7 +4,7 @@ const BookInput = () => {
   return (
     <form>
       <input type="text" placeholder="Add a Book..." value="" name="title" />
-      <button className="input-submit">Remove</button>
+      <button className="input-remove">Remove</button>
     </form>
   );
 };
