@@ -4,8 +4,8 @@ import BookList from './BookList';
 
 const Books = () => (
   <>
-    <BookInput />
     <BookList />
+    <BookInput />
   </>
 );
 
