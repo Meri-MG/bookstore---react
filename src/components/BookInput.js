@@ -1,7 +1,5 @@
 import React, { useState } from 'react';
-// import useDispatch hook
 import { useDispatch } from 'react-redux';
-// import your Action Creators
 import { addBook } from '../redux/books/books';
 
 const BookInput = () => {
@@ -12,12 +10,10 @@ const BookInput = () => {
   const submitBookToStore = () => {
     const idDate = new Date().getTime().toString(36);
     const newBook = {
-      id: idDate, // make sure it's unique
+      id: idDate,
       title: value,
       author: '',
     };
-
-    // dispatch an action and pass it the newBook object (your action's payload)
     dispatch(addBook(newBook));
     setValue('');
   };
