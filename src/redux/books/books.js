@@ -26,8 +26,8 @@ export const sendBookToAPI = (payload) => async (dispatch) => {
 
   const newBook = {
     item_id: id,
-    title,
     category,
+    title,
   };
 
   await axios.post(`${baseURL}/apps/Oni2oDx3ZuyHK8SWio2T/books`, newBook);
