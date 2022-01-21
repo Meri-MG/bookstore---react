@@ -16,7 +16,7 @@
 
 ## Live Demo
 
-> Project live demo not available yet
+> Project live demo on [Netlify](https://heuristic-goldstine-557bec.netlify.app/)
 
 
 # Getting Started
