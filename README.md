@@ -4,7 +4,7 @@
 > A single-page app that allows users store some of their favorite books. It lets users add their favorite books to the list and post them to an API. This project was built using Javascript, React-redux
 > Design followed [Zeplin](https://app.zeplin.io/projects) guidelines.
 
-![Bookstore](https://github.com/Meri-MG/bookstore---react/style/Bookstore.png)
+![Bookstore](https://raw.githubusercontent.com/Meri-MG/bookstore---react/style/Bookstore.png)
 
 ## Built With
 
