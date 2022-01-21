@@ -21,7 +21,8 @@ const BookInput = () => {
     setCategory('');
   };
   return (
-    <div>
+    <div className="addBookCont">
+      <hr />
       <h2>ADD NEW BOOK</h2>
       <form>
         <input

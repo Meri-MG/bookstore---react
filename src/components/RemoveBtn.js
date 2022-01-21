@@ -6,9 +6,22 @@ const RemoveBtn = (props) => {
 
   const id = props;
   return (
-    <button type="button" onClick={() => dispatch(deleteBookFromAPI(id.id))} id={id.id}>
-      Remove Book
-    </button>
+    <div>
+      <button type="button" className="remove-button">
+        Comments
+      </button>
+      <button
+        type="button"
+        className="remove-button"
+        onClick={() => dispatch(deleteBookFromAPI(id.id))}
+        id={id.id}
+      >
+        Remove
+      </button>
+      <button type="button" className="remove-button">
+        Edit
+      </button>
+    </div>
   );
 };
 
