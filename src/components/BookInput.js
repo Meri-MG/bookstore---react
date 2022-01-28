@@ -1,12 +1,15 @@
-import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import React, { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { sendBookToAPI } from '../redux/books/books';
+import { getCategoryFromAPI } from '../redux/categories/categories';
 
 const BookInput = () => {
   const [value, setValue] = useState('');
   const [category, setCategory] = useState('');
 
   const dispatch = useDispatch();
+  const data = useSelector((state) => state.categoriesReducer);
+  console.log(data, 'this is data');
 
   const submitBookToStore = (e) => {
     e.preventDefault();
@@ -20,6 +23,11 @@ const BookInput = () => {
     setValue('');
     setCategory('');
   };
+
+  useEffect(() => {
+    dispatch(getCategoryFromAPI());
+  }, []);
+
   return (
     <div className="addBookCont">
       <hr />
@@ -35,12 +43,11 @@ const BookInput = () => {
         />
         <select onChange={(e) => setCategory(e.target.value)} required>
           <option value="">Select a Category</option>
-          <option value="Fiction">Fiction</option>
-          <option value="Non-Fiction">Non-Fiction</option>
-          <option value="Science">Science</option>
-          <option value="Education">Education</option>
-          <option value="Classics">Classics</option>
-          <option value="Other">Other</option>
+          {data.map((category) => (
+            <option key={category.id} value={category.name}>
+              {category.name}
+            </option>
+          ))}
         </select>
         <button type="button" className="input-add" onClick={submitBookToStore}>
           Add Book
