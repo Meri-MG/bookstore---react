@@ -1,12 +1,10 @@
 import React, { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { sendCategoryToAPI } from '../../redux/categories/categories';
 
 const CategoriesInput = () => {
-  const data = useSelector((state) => state.categoriesReducer);
   const [category, setCategory] = useState('');
   const dispatch = useDispatch();
-  console.log(data, 'data from categories');
   const addCategory = (e) => {
     e.preventDefault();
     const newCategory = {
