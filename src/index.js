@@ -4,8 +4,8 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import store from './redux/configureStore';
 import Navigation from './components/Navigation';
-import Books from './components/Books';
-import Categories from './components/Categories';
+import Books from './components/Books/Books';
+import Categories from './components/Categories/Categories';
 import './index.css';
 
 ReactDOM.render(

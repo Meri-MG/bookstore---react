@@ -1,5 +1,5 @@
 import { useDispatch } from 'react-redux';
-import { deleteBookFromAPI } from '../redux/books/books';
+import { deleteBookFromAPI } from '../../redux/books/books';
 
 const RemoveBtn = (props) => {
   const dispatch = useDispatch();
