@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { sendBookToAPI } from '../redux/books/books';
-import { getCategoryFromAPI } from '../redux/categories/categories';
+import { sendBookToAPI } from '../../redux/books/books';
+import { getCategoryFromAPI } from '../../redux/categories/categories';
 
 const BookInput = () => {
   const [value, setValue] = useState('');

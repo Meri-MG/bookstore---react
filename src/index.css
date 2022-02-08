@@ -20,7 +20,9 @@ body {
 }
 
 .inner-nav-bar,
-.addBookCont {
+.addBookCont,
+.categoriesInput,
+.categoryItemCont {
   width: 80%;
   margin: 2rem auto;
   display: flex;
@@ -165,13 +167,15 @@ body {
   margin: 1.5rem 0;
 }
 
-.addBookCont form {
+.addBookCont form,
+.categoriesInput form {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
-.addBookCont input {
+.addBookCont input,
+.categoriesInput input {
   padding: 1rem 0 1rem 1.5rem;
   width: 50%;
   border: 1px solid #e8e8e8;
@@ -197,7 +201,7 @@ body {
   border-radius: 3px;
 }
 
-.addBookCont .input-add {
+.input-add {
   width: 15%;
   border: none;
   padding: 1rem;
@@ -219,4 +223,28 @@ body {
 
 button {
   cursor: pointer;
+}
+
+/* categories styles */
+.categoriesInput {
+  flex-direction: column;
+}
+
+.categoriesInput p {
+  margin: 2rem 0;
+  font-size: 20px;
+}
+
+.categoriesInput input {
+  width: 70%;
+}
+
+.categoryItemCont .categoryItem {
+  display: flex;
+  justify-content: space-between;
+  width: 40%;
+  background-color: #fff;
+  border-radius: 3px;
+  border: 1px solid #e8e8e8;
+  padding: 2rem;
 }
