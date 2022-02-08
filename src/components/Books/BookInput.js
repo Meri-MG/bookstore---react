@@ -9,7 +9,6 @@ const BookInput = () => {
 
   const dispatch = useDispatch();
   const data = useSelector((state) => state.categoriesReducer);
-  console.log(data, 'this is data');
 
   const submitBookToStore = (e) => {
     e.preventDefault();

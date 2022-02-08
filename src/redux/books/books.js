@@ -22,7 +22,6 @@ export const getBook = (payload) => ({
 });
 
 export const sendBookToAPI = (payload) => async (dispatch) => {
-  console.log(payload, 'payload from books');
   const { id, category, title } = payload;
 
   const newBook = {
