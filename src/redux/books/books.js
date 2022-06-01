@@ -1,12 +1,10 @@
-import axios from 'axios';
+import getData from '../../api/api';
 
 const ADD_BOOK = 'bookStore/books/ADD_BOOK';
 const REMOVE_BOOK = 'bookStore/books/REMOVE_BOOK';
 const GET_BOOK = 'bookStore/books/GET_BOOK';
 
 const initialState = [];
-
-const baseURL = 'https://us-central1-bookstore-api-e63c8.cloudfunctions.net/bookstoreApi';
 
 export const addBook = (payload) => ({
   type: ADD_BOOK,
@@ -23,16 +21,8 @@ export const getBook = (payload) => ({
 
 export const sendBookToAPI = (payload) => async (dispatch) => {
   console.log(payload, 'payload from books');
-  const { id, category, title } = payload;
-
-  const newBook = {
-    item_id: id,
-    category,
-    title,
-  };
-
-  await axios.post(`${baseURL}/apps/Oni2oDx3ZuyHK8SWio2T/books`, newBook);
   dispatch(addBook(payload));
+  getData();
 };
 
 export const getBookFromAPI = () => async (dispatch) => {
