@@ -2,14 +2,14 @@ import React from 'react';
 import RemoveBtn from './RemoveBtn';
 
 const BookItem = (props) => {
-  const title = props;
+  const book = props;
   return (
     <div className="bookItemCont">
       <div className="bookItem">
-        <li className="category">{title.data.category}</li>
-        <li className="title">{title.data.title}</li>
-        <li className="author">Hermann Hesse</li>
-        <RemoveBtn id={title.data.id} />
+        <li className="category">{book.data.category}</li>
+        <li className="book">{book.data.title}</li>
+        <li className="author">{book.data.author}</li>
+        <RemoveBtn id={book.data.id} />
       </div>
       <div className="wrapper-round">
         <div className="round" />
@@ -20,7 +20,10 @@ const BookItem = (props) => {
       </div>
       <div className="current">
         <p className="cur-head">CURRENT CHAPTER</p>
-        <p className="cur-head sec">Chapter 17</p>
+        <p className="cur-head sec">
+          Chapter-
+          {book.data.chapter}
+        </p>
         <input className="progress" type="button" value="UPDATE PROGRESS" />
       </div>
     </div>
