@@ -201,9 +201,17 @@ body {
   border-radius: 3px;
 }
 
+.addBtn_container {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  width: 80%;
+  margin: 2rem auto;
+}
+
 .input-add {
-  width: 15%;
-  border: none;
+  width: 100%;
+  align-self: flex-end;
   padding: 1rem;
   background-color: #0290ff;
   color: #fff;
@@ -213,9 +221,11 @@ body {
   justify-content: center;
   border-radius: 3px;
   outline: none;
+  border: 1px solid #0290ff;
+  transition: 0.3s ease;
 }
 
-.addBookCont .input-add:hover {
+.input-add:hover {
   background-color: #fff;
   color: #0290ff;
   border: 1px solid #0290ff;

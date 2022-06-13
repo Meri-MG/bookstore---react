@@ -5,6 +5,7 @@ import { Provider } from 'react-redux';
 import store from './redux/configureStore';
 import Navigation from './components/Navigation';
 import Books from './components/Books/Books';
+import BookInput from './components/Books/BookInput';
 import Categories from './components/Categories/Categories';
 import './index.css';
 
@@ -15,6 +16,7 @@ ReactDOM.render(
         <Navigation />
         <Routes>
           <Route path="/" element={<Books />} />
+          <Route path="/books" element={<BookInput />} />
           <Route path="/categories" element={<Categories />} />
         </Routes>
       </BrowserRouter>
