@@ -1,20 +1,23 @@
 import { useDispatch } from 'react-redux';
-import { deleteBookFromAPI } from '../../redux/books/books';
+import { removeBookFromApi } from '../../redux/books/books';
 
 const RemoveBtn = (props) => {
   const dispatch = useDispatch();
 
-  const id = props;
+  const book = props;
   return (
     <div>
       <button type="button" className="remove-button">
         Comments
+        (
+        {book.comments_counter}
+        )
       </button>
       <button
         type="button"
         className="remove-button"
-        onClick={() => dispatch(deleteBookFromAPI(id.id))}
-        id={id.id}
+        onClick={() => dispatch(removeBookFromApi(book.id))}
+        id={book.id}
       >
         Remove
       </button>
