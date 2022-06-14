@@ -8,9 +8,6 @@ const BookList = () => {
   const data = useSelector((state) => state.booksReducer);
   const dataCategory = useSelector((state) => state.categoriesReducer);
 
-  console.log(data, 'books');
-  console.log(dataCategory, 'categriess');
-
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getBookFromAPI());

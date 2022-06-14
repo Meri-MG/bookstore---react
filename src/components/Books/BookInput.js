@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import { sendBookToAPI } from '../../redux/books/books';
 import { getCategoryFromAPI } from '../../redux/categories/categories';
 
@@ -10,6 +11,7 @@ const BookInput = () => {
   const [category, setCategory] = useState('');
 
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const categories = useSelector((state) => state.categoriesReducer);
 
   const submitBookToStore = (e) => {
@@ -25,6 +27,7 @@ const BookInput = () => {
     setAuthor('');
     setChapter(0);
     setCategory('');
+    navigate('/');
   };
 
   useEffect(() => {
