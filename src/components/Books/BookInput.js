@@ -10,18 +10,17 @@ const BookInput = () => {
   const [category, setCategory] = useState('');
 
   const dispatch = useDispatch();
-  const data = useSelector((state) => state.categoriesReducer);
-  console.log(data, 'this is data');
+  const categories = useSelector((state) => state.categoriesReducer);
 
   const submitBookToStore = (e) => {
     e.preventDefault();
-    const idDate = new Date().getTime().toString(36);
-    const newBook = {
-      id: idDate,
+    const book = {
       title,
+      author,
       category,
+      chapter,
     };
-    dispatch(sendBookToAPI(newBook));
+    dispatch(sendBookToAPI(book));
     setTitle('');
     setAuthor('');
     setChapter(0);
@@ -64,7 +63,7 @@ const BookInput = () => {
         />
         <select onChange={(e) => setCategory(e.target.value)} required>
           <option value="">Select a Category</option>
-          {data.map((category) => (
+          {categories.map((category) => (
             <option key={category.id} value={category.name}>
               {category.name}
             </option>

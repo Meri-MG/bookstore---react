@@ -23,18 +23,23 @@ export const getBook = (payload) => ({
 
 export const sendBookToAPI = (payload) => async (dispatch) => {
   console.log(payload, 'payload from books');
+  const {
+    author, title, category, chapter,
+  } = payload;
+  const book = {
+    author,
+    title,
+    category,
+    chapter,
+  };
+  await getData.post('books/', book);
   dispatch(addBook(payload));
-  getData();
 };
 
 export const getBookFromAPI = () => async (dispatch) => {
   try {
     await getData('books/').then((response) => {
       const books = response.data;
-      // const mapBooks = [...books.data].map(([id, book]) => {
-      //   const { category, title } = book[0];
-      //   return { id, category, title };
-      // });
       dispatch(getBook(books));
     });
   } catch (error) {

@@ -3,13 +3,14 @@ import RemoveBtn from './RemoveBtn';
 
 const BookItem = (props) => {
   const book = props;
+
   return (
     <div className="bookItemCont">
       <div className="bookItem">
         <li className="category">{book.data.category}</li>
         <li className="book">{book.data.title}</li>
         <li className="author">{book.data.author}</li>
-        <RemoveBtn id={book.data.id} />
+        <RemoveBtn id={book.data.id} comments={book.data.comments_counter} />
       </div>
       <div className="wrapper-round">
         <div className="round" />
