@@ -25,11 +25,6 @@ export const getCategoryFromAPI = () => async (dispatch) => {
   try {
     await getData('categories/').then((response) => {
       const categories = response.data;
-      console.log(categories, 'categories');
-      // const mapBooks = [...books.data].map(([id, book]) => {
-      //   const { category, title } = book[0];
-      //   return { id, category, title };
-      // });
       dispatch(getCategory(categories));
     });
   } catch (error) {
@@ -38,10 +33,7 @@ export const getCategoryFromAPI = () => async (dispatch) => {
 };
 
 export const sendCategoryToAPI = (payload) => async (dispatch) => {
-  console.log(payload, 'payload from categories');
-  const {
-    name,
-  } = payload;
+  const { name } = payload;
   const category = {
     name,
   };
