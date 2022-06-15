@@ -15,7 +15,7 @@ const CategoriesInput = () => {
   };
 
   return (
-    <div className="categoriesInput">
+    <div className="input_container">
       <div>
         <p>
           If you don&#39;t see a category of your choice, add one:
@@ -30,7 +30,7 @@ const CategoriesInput = () => {
           onChange={(e) => setCategory(e.target.value)}
           required
         />
-        <button type="button" className="input-add" onClick={addCategory}>
+        <button type="button" className="add_btn" onClick={addCategory}>
           Add Category
         </button>
       </form>

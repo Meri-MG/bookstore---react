@@ -18,9 +18,6 @@ const RemoveBtn = (props) => {
       >
         Remove
       </button>
-      <button type="button" className="remove-button">
-        Edit
-      </button>
     </div>
   );
 };

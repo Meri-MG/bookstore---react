@@ -7,7 +7,6 @@
 }
 
 body {
-  width: 100%;
   background-color: #f5f6fa;
   font-family: 'Roboto Slab', serif;
 }
@@ -21,8 +20,8 @@ body {
 
 .inner-nav-bar,
 .addBookCont,
-.categoriesInput,
-.categoryItemCont {
+.item_container,
+.input_container {
   width: 80%;
   margin: 2rem auto;
   display: flex;
@@ -42,15 +41,15 @@ body {
   text-transform: uppercase;
 }
 
-.nav-bar ul li a {
+.nav-bar .nav-link.inactive {
   color: #16161642;
 }
 
-.nav-bar ul li a:hover {
+.nav-bar .nav-link:hover {
   color: #121212;
 }
 
-.nav-bar ul li a:focus {
+.nav-bar .nav-link.active {
   color: #121212;
 }
 
@@ -64,14 +63,15 @@ body {
   color: #4386bf;
   margin-bottom: 1rem;
   font-size: 1rem;
-}
-
-.bookItem .category {
-  color: #272727;
   font-weight: bold;
 }
 
-.bookItem .title {
+.bookItem .category {
+  color: #adaaaa;
+  font-weight: bold;
+}
+
+.bookItem .book {
   font-size: 1.375rem;
   font-weight: bold;
   margin: 1rem 0;
@@ -90,7 +90,6 @@ body {
 }
 
 .bookItemCont {
-  height: 10rem;
   width: 80%;
   margin: 2rem auto;
   background-color: #fff;
@@ -168,14 +167,14 @@ body {
 }
 
 .addBookCont form,
-.categoriesInput form {
+.input_container form {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
 .addBookCont input,
-.categoriesInput input {
+.input_container input {
   padding: 1rem 0 1rem 1.5rem;
   width: 50%;
   border: 1px solid #e8e8e8;
@@ -209,7 +208,8 @@ body {
   margin: 2rem auto;
 }
 
-.input-add {
+.input-add,
+.add_btn {
   width: 100%;
   align-self: flex-end;
   padding: 1rem;
@@ -225,7 +225,12 @@ body {
   transition: 0.3s ease;
 }
 
-.input-add:hover {
+.add_btn {
+  width: 50%;
+}
+
+.input-add:hover,
+.add_btn:hover {
   background-color: #fff;
   color: #0290ff;
   border: 1px solid #0290ff;
@@ -236,25 +241,164 @@ button {
 }
 
 /* categories styles */
-.categoriesInput {
+.input_container {
   flex-direction: column;
 }
 
-.categoriesInput p {
+.input_container p {
   margin: 2rem 0;
   font-size: 20px;
 }
 
-.categoriesInput input {
+.input_container input {
   width: 70%;
 }
 
-.categoryItemCont {
+.item_container {
   display: flex;
   justify-content: space-between;
   width: 40%;
+  align-items: flex-start;
   background-color: #fff;
   border-radius: 3px;
   border: 1px solid #e8e8e8;
   padding: 2rem;
+}
+
+.remove-button.category {
+  border-right: none;
+  padding: 0;
+}
+
+.btn_wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@media (max-width: 970px) {
+  .bookItemCont {
+    flex-direction: column;
+  }
+
+  .bookItem {
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .bookItem .author {
+    margin-bottom: 0;
+  }
+
+  .wrapper-round {
+    border-right: none;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 2rem;
+    padding: 0;
+  }
+
+  .current {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+  }
+}
+
+@media (max-width: 670px) {
+  .nav-bar .inner-nav-bar {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .nav-bar ul {
+    margin: 1rem auto;
+  }
+
+  .input_container form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .input_container p {
+    text-align: center;
+  }
+
+  .input_container button {
+    margin-top: 2rem;
+    align-self: center;
+  }
+
+  .item_container {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+  }
+
+  .item_container p {
+    margin-bottom: 1rem;
+  }
+
+  .remove-button {
+    margin-right: 0;
+    border-right: none;
+  }
+
+  .bookItemCont {
+    flex-direction: column;
+  }
+
+  .bookItem {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .book_info {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+  }
+
+  .current {
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 400px) {
+  .wrapper-round {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .book_info,
+  .btn_wrapper {
+    width: 100%;
+    justify-content: center;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-bottom: 1rem;
+  }
+
+  .bookItemCont {
+    align-items: flex-start;
+  }
+
+  .current {
+    align-items: flex-start;
+  }
+
+  .nav-bar ul {
+    width: 80%;
+    margin: 1rem auto;
+  }
 }

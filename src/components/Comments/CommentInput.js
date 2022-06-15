@@ -17,7 +17,7 @@ const CommentsInput = (props) => {
   };
 
   return (
-    <div className="CommentsInput">
+    <div className="input_container">
       <div>
         <p>Add your review to the Book:</p>
       </div>
@@ -30,7 +30,7 @@ const CommentsInput = (props) => {
           onChange={(e) => setComment(e.target.value)}
           required
         />
-        <button type="button" className="input-add" onClick={addComment}>
+        <button type="button" className="add_btn" onClick={addComment}>
           Add Comment
         </button>
       </form>

@@ -1,22 +1,22 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 const Navigation = () => (
   <div className="nav-bar">
     <div className="inner-nav-bar">
-      <Link className="nav-link" to="/">
+      <NavLink className="nav-link" to="/">
         <h2>Bookstore CMS</h2>
-      </Link>
+      </NavLink>
       <ul>
         <li>
-          <Link className="nav-link" to="/">
+          <NavLink className={({ isActive }) => (isActive ? 'nav-link active' : 'nav-link inactive')} to="/">
             Books
-          </Link>
+          </NavLink>
         </li>
         <li>
-          <Link className="nav-link" to="/categories">
+          <NavLink className={({ isActive }) => (isActive ? 'nav-link active' : 'nav-link inactive')} to="/categories">
             Categories
-          </Link>
+          </NavLink>
         </li>
       </ul>
     </div>

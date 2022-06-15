@@ -5,8 +5,10 @@ const CategoryItem = (props) => {
   const category = props;
   return (
     <>
-      <div className="categoryItemCont">{category.data.name}</div>
-      <DeleteBtn id={category.data.id} />
+      <div className="item_container">
+        <p>{category.data.name}</p>
+        <DeleteBtn id={category.data.id} />
+      </div>
     </>
   );
   // );

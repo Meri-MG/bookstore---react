@@ -8,7 +8,7 @@ const DeleteBtn = (props) => {
     <>
       <button
         type="button"
-        className="remove-button"
+        className="remove-button category"
         onClick={() => dispatch(removeCommentFromAPI(data.id, data.book))}
         id={data.id}
       >
