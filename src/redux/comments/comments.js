@@ -33,7 +33,6 @@ export const getCommentFromAPI = (id) => async (dispatch) => {
 };
 
 export const sendCommentToAPI = (payload) => async (dispatch) => {
-  console.log(payload, 'payload from comments');
   const { text, book } = payload;
   const comment = {
     text,

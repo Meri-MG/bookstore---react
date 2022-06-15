@@ -5,7 +5,6 @@ import CategoryItem from './CategoriesItem';
 
 const CategoriesList = () => {
   const data = useSelector((state) => state.categoriesReducer);
-  console.log(data, 'categories');
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getCategoryFromAPI());

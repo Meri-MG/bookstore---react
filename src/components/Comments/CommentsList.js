@@ -7,8 +7,6 @@ import CommentsItem from './CommentsItem';
 const CommentsList = () => {
   const data = useSelector((state) => state.commentsReducer);
   const { id } = useParams();
-  console.log(id, 'id');
-  console.log(data, 'Comments');
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getCommentFromAPI(id));

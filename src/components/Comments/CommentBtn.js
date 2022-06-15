@@ -2,7 +2,6 @@ import { Link } from 'react-router-dom';
 
 const CommentBtn = (props) => {
   const book = props;
-  console.log(book.id, 'from commentbtn');
   return (
     <>
       <Link to={`/books/${book.id}`}>

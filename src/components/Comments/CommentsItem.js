@@ -3,7 +3,6 @@ import DeleteBtn from './DeleteBtn';
 
 const CommentsItem = (props) => {
   const comment = props;
-  console.log(comment, 'comment props');
   return (
     <>
       <div className="CommentsItemCont" key={comment.data.id}>{comment.data.text}</div>

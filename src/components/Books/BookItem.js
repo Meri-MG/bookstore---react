@@ -11,7 +11,6 @@ const BookItem = (props) => {
     dispatch(getCommentFromAPI(id)).then(() => {});
   };
 
-  console.log(book.data.id, 'id');
   return (
     <div className="bookItemCont">
       <div className="bookItem">

@@ -4,7 +4,6 @@ import { removeCommentFromAPI } from '../../redux/comments/comments';
 const DeleteBtn = (props) => {
   const dispatch = useDispatch();
   const data = props;
-  console.log(data, 'from comments data');
   return (
     <>
       <button

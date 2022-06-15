@@ -2,14 +2,15 @@ import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { sendCommentToAPI } from '../../redux/comments/comments';
 
-const CommentsInput = () => {
+const CommentsInput = (props) => {
   const [comment, setComment] = useState('');
   const dispatch = useDispatch();
+  const data = props;
   const addComment = (e) => {
     e.preventDefault();
     const newComment = {
       text: comment,
-      book: 30,
+      book: data.id,
     };
     dispatch(sendCommentToAPI(newComment));
     setComment('');
