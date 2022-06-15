@@ -7,7 +7,7 @@ import Navigation from './components/Navigation';
 import Books from './components/Books/Books';
 import BookInput from './components/Books/BookInput';
 import CommentBtn from './components/Books/CommentBtn';
-// import Categories from './components/Categories/Categories';
+import Categories from './components/Categories/Categories';
 import './index.css';
 
 ReactDOM.render(
@@ -20,7 +20,7 @@ ReactDOM.render(
           <Route path="/new_book" element={<BookInput />} />
           <Route path="/new_comment" element={<CommentBtn />} />
 
-          {/* <Route path="/categories" element={<Categories />} /> */}
+          <Route path="/categories" element={<Categories />} />
         </Routes>
       </BrowserRouter>
     </Provider>

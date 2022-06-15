@@ -5,6 +5,7 @@ import CategoryItem from './CategoriesItem';
 
 const CategoriesList = () => {
   const data = useSelector((state) => state.categoriesReducer);
+  console.log(data, 'categories');
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getCategoryFromAPI());
@@ -12,11 +13,7 @@ const CategoriesList = () => {
   return (
     <ul>
       {data.map((category) => (
-        <CategoryItem
-          key={category.id}
-          data={category}
-          category={category.name}
-        />
+        <CategoryItem key={category.id} data={category} />
       ))}
     </ul>
   );

@@ -4,13 +4,12 @@ import DeleteBtn from './DeleteBtn';
 const CategoryItem = (props) => {
   const category = props;
   return (
-    <div className="categoryItemCont">
-      <ul className="categoryItem">
-        <li className="category">{category.data.name}</li>
-        <DeleteBtn id={category.data.id} />
-      </ul>
-    </div>
+    <>
+      <div className="categoryItemCont">{category.data.name}</div>
+      <DeleteBtn id={category.data.id} />
+    </>
   );
+  // );
 };
 
 export default CategoryItem;

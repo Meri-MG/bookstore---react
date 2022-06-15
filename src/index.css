@@ -249,7 +249,7 @@ button {
   width: 70%;
 }
 
-.categoryItemCont .categoryItem {
+.categoryItemCont {
   display: flex;
   justify-content: space-between;
   width: 40%;

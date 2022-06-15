@@ -2,7 +2,8 @@ import getData from '../../api/api';
 
 const GET_CATEGORY = 'bookStore/books/GET_CATEGORY';
 const ADD_CATEGORY = 'bookStore/books/ADD_CATEGORY';
-const DELETE_CATEGORY = 'bookStore/books/DELETE_CATEGORY';
+const REMOVE_CATEGORY_SUCCESS = 'bookStore/books/REMOVE_CATEGORY_SUCCESS';
+const REMOVE_CATEGORY_FAILURE = 'bookStore/books/REMOVE_CATEGORY_FAILURE';
 const initialState = [];
 
 export const getCategory = (payload) => ({
@@ -15,8 +16,8 @@ export const addCategory = (payload) => ({
   payload,
 });
 
-export const deleteCategory = (payload) => ({
-  type: DELETE_CATEGORY,
+export const removeCategory = (payload) => ({
+  type: REMOVE_CATEGORY_SUCCESS,
   payload,
 });
 
@@ -36,20 +37,28 @@ export const getCategoryFromAPI = () => async (dispatch) => {
   }
 };
 
-// export const sendCategoryToAPI = (payload) => async (dispatch) => {
-//   const { name } = payload;
+export const sendCategoryToAPI = (payload) => async (dispatch) => {
+  console.log(payload, 'payload from categories');
+  const {
+    name,
+  } = payload;
+  const category = {
+    name,
+  };
+  await getData.post('categories/', category);
+  dispatch(addCategory(payload));
+};
 
-//   const newCategory = {
-//     name,
-//   };
-//   await axios.post(`${baseURL2}/create`, newCategory);
-//   dispatch(addCategory(payload));
-// };
-
-// export const deleteCategoryFromAPI = (id) => async (dispatch) => {
-//   await axios.delete(`${baseURL2}/delete?id=${id}`);
-//   dispatch(deleteCategory({ id }));
-// };
+export const removeCategoryFromAPI = (id) => async (dispatch) => {
+  try {
+    dispatch(removeCategory(id));
+    await getData
+      .delete(`categories/${id}`)
+      .then((response) => dispatch({ type: REMOVE_CATEGORY_SUCCESS, response }));
+  } catch (error) {
+    dispatch({ type: REMOVE_CATEGORY_FAILURE, error });
+  }
+};
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
@@ -57,7 +66,7 @@ const reducer = (state = initialState, action) => {
       return [...state, action.payload];
     case GET_CATEGORY:
       return [...action.payload];
-    case DELETE_CATEGORY:
+    case REMOVE_CATEGORY_SUCCESS:
       return state.filter((category) => category.id !== action.payload.id);
     default:
       return state;
