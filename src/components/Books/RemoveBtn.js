@@ -1,6 +1,5 @@
 import { useDispatch } from 'react-redux';
 import { removeBookFromApi } from '../../redux/books/books';
-import CommentBtn from './CommentBtn';
 
 const RemoveBtn = (props) => {
   const dispatch = useDispatch();
@@ -11,7 +10,6 @@ const RemoveBtn = (props) => {
 
   return (
     <div>
-      <CommentBtn comments={book.comments} />
       <button
         type="button"
         className="remove-button"

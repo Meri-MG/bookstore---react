@@ -6,8 +6,9 @@ import store from './redux/configureStore';
 import Navigation from './components/Navigation';
 import Books from './components/Books/Books';
 import BookInput from './components/Books/BookInput';
-import CommentBtn from './components/Books/CommentBtn';
+// import CommentBtn from './components/Comments/CommentBtn';
 import Categories from './components/Categories/Categories';
+import Comments from './components/Comments/Comments';
 import './index.css';
 
 ReactDOM.render(
@@ -18,8 +19,7 @@ ReactDOM.render(
         <Routes>
           <Route path="/" element={<Books />} />
           <Route path="/new_book" element={<BookInput />} />
-          <Route path="/new_comment" element={<CommentBtn />} />
-
+          <Route path="/books/:id" element={<Comments />} />
           <Route path="/categories" element={<Categories />} />
         </Routes>
       </BrowserRouter>
