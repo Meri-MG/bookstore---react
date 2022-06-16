@@ -1,11 +1,13 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import RemoveBtn from './RemoveBtn';
 import CommentBtn from '../Comments/CommentBtn';
 import EditBtn from './EditBtn';
+import EditBook from './EditBook';
 import { getCommentFromAPI } from '../../redux/comments/comments';
 
 const BookItem = (props) => {
+  const [isOpen, setIsOpen] = useState(false);
   const book = props;
   const dispatch = useDispatch();
   const showCommentsPage = (id) => {
@@ -27,7 +29,8 @@ const BookItem = (props) => {
             id={book.data.id}
           />
           <RemoveBtn id={book.data.id} />
-          <EditBtn className="" />
+          <EditBtn className="" showModal={() => setIsOpen(true)} />
+          {isOpen && <EditBook book={book.data} setIsOpen={setIsOpen} />}
         </div>
       </div>
       <div className="wrapper-round">
