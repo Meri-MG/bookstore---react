@@ -125,17 +125,6 @@ body {
   cursor: pointer;
 }
 
-.round {
-  border-radius: 100%;
-  width: 80px;
-  border: 3px solid rgb(223, 211, 211);
-  height: 80px;
-  margin-top: 21px;
-  border-bottom: 3px solid #0290ff;
-  border-right: 3px solid #0290ff;
-  border-top: 3px solid #0290ff;
-}
-
 .wrapper-round {
   display: flex;
   border-right: 1px solid #e8e8e8;
@@ -286,6 +275,7 @@ button {
     width: 100%;
     justify-content: space-between;
     align-items: center;
+    margin-bottom: 2rem;
   }
 
   .bookItem .author {
@@ -531,4 +521,3 @@ button {
   transform: none;
   background: whitesmoke;
 }
-
