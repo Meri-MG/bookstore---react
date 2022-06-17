@@ -1,7 +1,9 @@
 import getData from '../../api/api';
 
 const GET_COMMENT = 'bookStore/books/GET_COMMENT';
+const GET_COMMENT_FAILURE = 'bookStore/books/GET_COMMENT_FAILURE';
 const ADD_COMMENT = 'bookStore/books/ADD_COMMENT';
+const ADD_COMMENT_FAILURE = 'bookStore/books/ADD_COMMENT_FAILURE';
 const REMOVE_COMMENT_SUCCESS = 'bookStore/books/REMOVE_COMMENT_SUCCESS';
 const REMOVE_COMMENT_FAILURE = 'bookStore/books/REMOVE_COMMENT_FAILURE';
 const initialState = [];
@@ -28,7 +30,7 @@ export const getCommentFromAPI = (id) => async (dispatch) => {
       dispatch(getComment(comments));
     });
   } catch (error) {
-    console.log(error);
+    dispatch({ type: GET_COMMENT_FAILURE, error });
   }
 };
 
@@ -38,8 +40,12 @@ export const sendCommentToAPI = (payload) => async (dispatch) => {
     text,
     book,
   };
-  await getData.post(`books/${book}/comments`, comment);
-  dispatch(addComment(payload));
+  try {
+    await getData.post(`books/${book}/comments`, comment);
+    dispatch(addComment(payload));
+  } catch (error) {
+    dispatch({ type: ADD_COMMENT_FAILURE, error });
+  }
 };
 
 export const removeCommentFromAPI = (id, book) => async (dispatch) => {

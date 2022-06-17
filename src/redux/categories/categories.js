@@ -1,7 +1,9 @@
 import getData from '../../api/api';
 
 const GET_CATEGORY = 'bookStore/books/GET_CATEGORY';
+const GET_CATEGORY_FAILURE = 'bookStore/books/GET_CATEGORY_FAILURE';
 const ADD_CATEGORY = 'bookStore/books/ADD_CATEGORY';
+const ADD_CATEGORY_FAILURE = 'bookStore/books/ADD_CATEGORY_FAILURE';
 const REMOVE_CATEGORY_SUCCESS = 'bookStore/books/REMOVE_CATEGORY_SUCCESS';
 const REMOVE_CATEGORY_FAILURE = 'bookStore/books/REMOVE_CATEGORY_FAILURE';
 const initialState = [];
@@ -28,7 +30,7 @@ export const getCategoryFromAPI = () => async (dispatch) => {
       dispatch(getCategory(categories));
     });
   } catch (error) {
-    console.log(error);
+    dispatch({ type: GET_CATEGORY_FAILURE, error });
   }
 };
 
@@ -37,8 +39,12 @@ export const sendCategoryToAPI = (payload) => async (dispatch) => {
   const category = {
     name,
   };
-  await getData.post('categories/', category);
-  dispatch(addCategory(payload));
+  try {
+    await getData.post('categories/', category);
+    dispatch(addCategory(payload));
+  } catch (error) {
+    dispatch({ type: ADD_CATEGORY_FAILURE, error });
+  }
 };
 
 export const removeCategoryFromAPI = (id) => async (dispatch) => {

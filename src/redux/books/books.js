@@ -1,11 +1,13 @@
 import getData from '../../api/api';
 
 const ADD_BOOK = 'bookStore/books/ADD_BOOK';
+const ADD_BOOK_FAILURE = 'bookStore/books/ADD_BOOK_FAILURE';
 const UPDATE_BOOK = 'bookStore/books/UPDATE_BOOK';
+const UPDATE_BOOK_FAILURE = 'bookStore/books/UPDATE_BOOK_FAILURE';
 const REMOVE_BOOK = 'bookStore/books/REMOVE_BOOK';
-const GET_BOOK = 'bookStore/books/GET_BOOK';
-const REMOVE_BOOK_SUCCESS = 'bookStore/books/REMOVE_BOOK_SUCCESS';
 const REMOVE_BOOK_FAILURE = 'bookStore/books/REMOVE_BOOK_FAILURE';
+const GET_BOOK = 'bookStore/books/GET_BOOK';
+const GET_BOOK_FAILURE = 'bookStore/books/GET_BOOK_FAILURE';
 
 const initialState = [];
 
@@ -39,8 +41,12 @@ export const sendBookToAPI = (payload) => async (dispatch) => {
     category,
     chapter,
   };
-  await getData.post('books/', book);
-  dispatch(addBook(payload));
+  try {
+    await getData.post('books/', book);
+    dispatch(addBook(payload));
+  } catch (error) {
+    dispatch({ type: ADD_BOOK_FAILURE, error });
+  }
 };
 
 export const updateBookToAPI = (payload) => async (dispatch) => {
@@ -54,8 +60,12 @@ export const updateBookToAPI = (payload) => async (dispatch) => {
     category,
     chapter,
   };
-  await getData.patch(`books/${id}`, book);
-  dispatch(updateBook(payload));
+  try {
+    await getData.patch(`books/${id}`, book);
+    dispatch(updateBook(payload));
+  } catch (error) {
+    dispatch({ type: UPDATE_BOOK_FAILURE, error });
+  }
 };
 
 export const getBookFromAPI = () => async (dispatch) => {
@@ -65,7 +75,7 @@ export const getBookFromAPI = () => async (dispatch) => {
       dispatch(getBook(books));
     });
   } catch (error) {
-    console.log(error);
+    dispatch({ type: GET_BOOK_FAILURE, error });
   }
 };
 
@@ -74,7 +84,7 @@ export const removeBookFromApi = (id) => async (dispatch) => {
     dispatch(removeBook(id));
     await getData
       .delete(`books/${id}`)
-      .then((response) => dispatch({ type: REMOVE_BOOK_SUCCESS, response }));
+      .then((response) => dispatch({ type: REMOVE_BOOK, response }));
   } catch (error) {
     dispatch({ type: REMOVE_BOOK_FAILURE, error });
   }

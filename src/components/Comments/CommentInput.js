@@ -26,7 +26,7 @@ const CommentsInput = (props) => {
           type="text"
           placeholder="Add a Comment..."
           value={comment}
-          name="title"
+          name="text"
           onChange={(e) => setComment(e.target.value)}
           required
         />

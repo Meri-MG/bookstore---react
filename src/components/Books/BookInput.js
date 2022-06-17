@@ -44,6 +44,7 @@ const BookInput = () => {
           placeholder="Book Title"
           value={title}
           name="title"
+          min={3}
           onChange={(e) => setTitle(e.target.value)}
           required
         />
@@ -51,7 +52,8 @@ const BookInput = () => {
           type="text"
           placeholder="Book Author"
           value={author}
-          name="title"
+          name="author"
+          min={3}
           onChange={(e) => setAuthor(e.target.value)}
           required
         />
@@ -60,7 +62,7 @@ const BookInput = () => {
           placeholder="Chapter"
           pattern="[1-9]\d*(\s*[-/]\s*[1-9]\d*)?"
           value={chapter}
-          name="title"
+          name="chapter"
           onChange={(e) => setChapter(e.target.value)}
           required
         />

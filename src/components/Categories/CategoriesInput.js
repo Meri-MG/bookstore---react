@@ -27,6 +27,7 @@ const CategoriesInput = () => {
           placeholder="Add a Category..."
           value={category}
           name="title"
+          min={3}
           onChange={(e) => setCategory(e.target.value)}
           required
         />
