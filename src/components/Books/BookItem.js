@@ -10,10 +10,12 @@ import ProgressCircle from './ProgressCircle';
 import { getCommentFromAPI } from '../../redux/comments/comments';
 
 const BookItem = (props) => {
+  const book = props;
   const [isOpen, setIsOpen] = useState(false);
   const [update, setUpdate] = useState(false);
-  const [total, setTotal] = useState(0);
-  const book = props;
+
+  const initializeState = () => JSON.parse(localStorage.getItem(`progress-bar${book.data.id}`)) ?? 0;
+  const [total, setTotal] = useState(initializeState());
   const dispatch = useDispatch();
 
   const showCommentsPage = (id) => {
@@ -25,13 +27,8 @@ const BookItem = (props) => {
   };
 
   useEffect(() => {
-    localStorage.setItem('progress-bar', JSON.stringify(total));
+    localStorage.setItem(`progress-bar${book.data.id}`, JSON.stringify(total));
   }, [total]);
-
-  useEffect(() => {
-    const data = localStorage.getItem('progress-bar');
-    if (data !== null) setTotal(JSON.parse(data));
-  }, []);
 
   return (
     <div className="bookItemCont">
