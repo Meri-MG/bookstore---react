@@ -1,5 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { removeBookFromApi, getBookFromAPI } from '../../redux/books/books';
+
 const RemoveBtn = (props) => {
   const data = useSelector((state) => state.booksReducer);
   const dispatch = useDispatch();
@@ -8,7 +9,7 @@ const RemoveBtn = (props) => {
   const removeBook = (id) => {
     dispatch(removeBookFromApi(id));
     dispatch(getBookFromAPI());
-    props.setState(data);
+    book.setState(data);
   };
 
   return (

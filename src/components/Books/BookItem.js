@@ -44,7 +44,7 @@ const BookItem = (props) => {
             onClick={() => showCommentsPage(book.data.id)}
             id={book.data.id}
           />
-          <RemoveBtn setState={props.setState} id={book.data.id} />
+          <RemoveBtn setState={book.setState} id={book.data.id} />
           <EditBtn className="" showModal={() => setIsOpen(true)} />
           {isOpen && <EditBook book={book.data} setIsOpen={setIsOpen} />}
         </div>
@@ -53,7 +53,8 @@ const BookItem = (props) => {
         <ProgressCircle strokeWidth={4} percentage={total} />
         <div className="per">
           <h3 className="percent top" onChange={showProgressBar}>
-            {total}%
+            {total}
+            %
           </h3>
           <p className="percent">Completed</p>
         </div>
@@ -64,8 +65,17 @@ const BookItem = (props) => {
           Chapter-
           {book.data.chapter}
         </p>
-        <UpdateProgressBtn id={book.data.id} showProgress={() => setUpdate(true)} />
-        {update && <UpdateProgress book={book.data} setUpdate={setUpdate} showProgressBar={showProgressBar} />}
+        <UpdateProgressBtn
+          id={book.data.id}
+          showProgress={() => setUpdate(true)}
+        />
+        {update && (
+          <UpdateProgress
+            book={book.data}
+            setUpdate={setUpdate}
+            showProgressBar={showProgressBar}
+          />
+        )}
       </div>
     </div>
   );

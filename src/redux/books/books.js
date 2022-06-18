@@ -95,7 +95,7 @@ const reducer = (state = initialState, action) => {
     case ADD_BOOK:
       return [...state, action.payload];
     case UPDATE_BOOK:
-      return [...state, action.payload];
+      return state.map((book) => (book.id === action.payload.id ? action.payload : book));
     case REMOVE_BOOK:
       return state.filter((book) => book.id !== action.payload.id);
     case GET_BOOK:

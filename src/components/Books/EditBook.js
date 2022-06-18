@@ -6,7 +6,6 @@ import { getCategoryFromAPI } from '../../redux/categories/categories';
 
 const EditBook = (props) => {
   const data = props;
-  console.log(props, 'props');
   const [title, setTitle] = useState(data.book.title);
   const [author, setAuthor] = useState(data.book.author);
   const [chapter, setChapter] = useState(data.book.chapter);

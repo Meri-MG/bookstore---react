@@ -11,6 +11,7 @@ const BookList = () => {
   const [state, setState] = useState(data);
 
   const dispatch = useDispatch();
+
   useEffect(() => {
     dispatch(getBookFromAPI());
   }, [state]);
@@ -18,6 +19,7 @@ const BookList = () => {
   useEffect(() => {
     dispatch(getCategoryFromAPI());
   }, []);
+
   return (
     <ul>
       {data.map((book) => (
