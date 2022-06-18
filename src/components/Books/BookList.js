@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import BookItem from './BookItem';
 import { getBookFromAPI } from '../../redux/books/books';
@@ -8,10 +8,12 @@ const BookList = () => {
   const data = useSelector((state) => state.booksReducer);
   const dataCategory = useSelector((state) => state.categoriesReducer);
 
+  const [state, setState] = useState(data);
+
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getBookFromAPI());
-  }, []);
+  }, [state]);
 
   useEffect(() => {
     dispatch(getCategoryFromAPI());
@@ -19,7 +21,7 @@ const BookList = () => {
   return (
     <ul>
       {data.map((book) => (
-        <BookItem key={book.id} data={book} category={dataCategory} />
+        <BookItem setState={setState} key={book.id} data={book} category={dataCategory} />
       ))}
     </ul>
   );
