@@ -7,7 +7,7 @@ const CommentsItem = (props) => {
     <>
       <div className="item_container" key={comment.data.id}>
         <p>{comment.data.text}</p>
-        <DeleteBtn id={comment.data.id} book={comment.data.book_id} />
+        <DeleteBtn id={comment.data.id} book={comment.data.book_id} setState={comment.setState} />
       </div>
     </>
   );

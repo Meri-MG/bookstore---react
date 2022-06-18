@@ -23,7 +23,7 @@ const BookList = () => {
   return (
     <ul>
       {data.map((book) => (
-        <BookItem setState={setState} key={book.id} data={book} category={dataCategory} />
+        <BookItem setState={setState} key={book.title} data={book} category={dataCategory} />
       ))}
     </ul>
   );
