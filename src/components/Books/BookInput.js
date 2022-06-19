@@ -69,7 +69,7 @@ const BookInput = () => {
           required
         />
         <input
-          type="text"
+          type="number"
           placeholder="Chapter"
           pattern="[1-9]\d*(\s*[-/]\s*[1-9]\d*)?"
           value={chapter}

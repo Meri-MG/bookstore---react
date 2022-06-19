@@ -45,8 +45,6 @@ const EditBook = (props) => {
       />
       <div className="centered">
         <div className="modal">
-          <hr />
-          <h2>ADD NEW BOOK</h2>
           <form className="modal_actions">
             <input
               type="text"
@@ -83,14 +81,14 @@ const EditBook = (props) => {
             </select>
             <button
               type="button"
-              className="input-add"
+              className="input-add save"
               onClick={updateBookToStore}
             >
               Save Changes
             </button>
             <button
               type="button"
-              className="input-add"
+              className="input-add cancel"
               onClick={() => data.setIsOpen(false)}
             >
               Cancel

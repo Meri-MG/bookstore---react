@@ -26,22 +26,20 @@ const UpdateProgress = (props) => {
         tabIndex={0}
         aria-label="dark background"
       />
-      <div className="centered">
-        <div className="modal">
-          <hr />
-          <h2>ADD NEW BOOK</h2>
-          <form className="modal_actions">
+      <div className="centered progress_centered">
+        <div className="modal progress_modal">
+          <form className="modal_actions progress_actions">
+            <p className="progress_para">How many pages have you read:</p>
             <input
-              type="text"
-              placeholder="Book Title"
+              type="number"
               value={toPage}
               name="title"
               onChange={(e) => setToPage(e.target.value)}
               required
             />
+            <p className="progress_para">from:</p>
             <input
-              type="text"
-              placeholder="Book Author"
+              type="number"
               value={fromPage}
               name="title"
               onChange={(e) => setFromPage(e.target.value)}
@@ -49,14 +47,14 @@ const UpdateProgress = (props) => {
             />
             <button
               type="button"
-              className="input-add"
+              className="input-add save"
               onClick={updateProgressOnBook}
             >
               Save Progress
             </button>
             <button
               type="button"
-              className="input-add"
+              className="input-add cancel"
               onClick={() => data.setUpdate(false)}
             >
               Cancel
