@@ -9,6 +9,7 @@ const BookInput = () => {
   const [author, setAuthor] = useState('');
   const [chapter, setChapter] = useState(0);
   const [category, setCategory] = useState('');
+  const [validation, setValidation] = useState();
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -27,7 +28,16 @@ const BookInput = () => {
     setAuthor('');
     setChapter(0);
     setCategory('');
-    navigate('/');
+    let errors = validation;
+    if (title.trim() === '' || author.trim() === '' || chapter === null) {
+      errors = 'These fields cannot be empty';
+    } else if (title.trim().length < 3) {
+      errors = 'These fields cannot be less than 3 characters';
+    } else {
+      errors = '';
+      navigate('/');
+    }
+    setValidation(errors);
   };
 
   useEffect(() => {
@@ -39,6 +49,7 @@ const BookInput = () => {
       <hr />
       <h2>ADD NEW BOOK</h2>
       <form>
+        {validation && <p>{validation}</p>}
         <input
           type="text"
           placeholder="Book Title"

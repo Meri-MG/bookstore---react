@@ -4,6 +4,7 @@ import { sendCommentToAPI } from '../../redux/comments/comments';
 
 const CommentsInput = (props) => {
   const [comment, setComment] = useState('');
+  const [validation, setValidation] = useState();
   const dispatch = useDispatch();
   const data = props;
   const addComment = (e) => {
@@ -14,6 +15,15 @@ const CommentsInput = (props) => {
     };
     dispatch(sendCommentToAPI(newComment));
     setComment('');
+    let errors = validation;
+    if (comment.trim() === '') {
+      errors = 'This field cannot be empty';
+    } else if (comment.trim().length < 3) {
+      errors = 'This field cannot be less than 3 characters';
+    } else {
+      errors = '';
+    }
+    setValidation(errors);
   };
 
   return (
@@ -22,6 +32,7 @@ const CommentsInput = (props) => {
         <p>Add your review to the Book:</p>
       </div>
       <form>
+        {validation && <p>{validation}</p>}
         <input
           type="text"
           placeholder="Add a Comment..."

@@ -4,6 +4,7 @@ import { sendCategoryToAPI } from '../../redux/categories/categories';
 
 const CategoriesInput = () => {
   const [category, setCategory] = useState('');
+  const [validation, setValidation] = useState();
   const dispatch = useDispatch();
   const addCategory = (e) => {
     e.preventDefault();
@@ -12,6 +13,15 @@ const CategoriesInput = () => {
     };
     dispatch(sendCategoryToAPI(newCategory));
     setCategory('');
+    let errors = validation;
+    if (category.trim() === '') {
+      errors = 'This field cannot be empty';
+    } else if (category.trim().length < 3) {
+      errors = 'This field cannot be less than 3 characters';
+    } else {
+      errors = '';
+    }
+    setValidation(errors);
   };
 
   return (
@@ -22,6 +32,7 @@ const CategoriesInput = () => {
         </p>
       </div>
       <form>
+        {validation && <p>{validation}</p>}
         <input
           type="text"
           placeholder="Add a Category..."
