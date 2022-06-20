@@ -19,7 +19,9 @@
 
 ## Live Demo
 
-> Project live demo on [Netlify](https://wizardly-mclean-4b0219.netlify.app/)
+> [Front-end](https://melodic-boba-111583.netlify.app/)
+> [Back-end](https://protected-taiga-25036.herokuapp.com/api/v1/books)
+> [Swagger Documentation for API](https://protected-taiga-25036.herokuapp.com/api-docs/index.html)
 
 
 # Getting Started
