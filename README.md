@@ -19,9 +19,9 @@
 
 ## Live Demo
 
-> [Front-end](https://melodic-boba-111583.netlify.app/)
-> [Back-end](https://protected-taiga-25036.herokuapp.com/api/v1/books)
-> [Swagger Documentation for API](https://protected-taiga-25036.herokuapp.com/api-docs/index.html)
+- [Front-end](https://melodic-boba-111583.netlify.app/)
+- [Back-end](https://protected-taiga-25036.herokuapp.com/api/v1/books)
+- [Swagger Documentation for API](https://protected-taiga-25036.herokuapp.com/api-docs/index.html)
 
 
 # Getting Started
@@ -70,4 +70,4 @@
 Give a ⭐ if you like this project!
 
 # Acknowledgments
-Thanks to my learning partners.
+Thanks to my learning partner [Shoira](https://github.com/ShoiraTa).
