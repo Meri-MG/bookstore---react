@@ -356,6 +356,17 @@ button {
   text-align: center;
 }
 
+.error_msg {
+  color: #ff3e4e;
+  font-size: 13px;
+  margin: 0;
+}
+
+.input_container .error_msg {
+  font-size: 13px;
+  margin: 0;
+}
+
 @media (max-width: 970px) {
   .bookItemCont {
     flex-direction: column;

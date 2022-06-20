@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const getData = axios.create({
-  baseURL: 'http://localhost:3000/api/v1/',
+  baseURL: 'https://protected-taiga-25036.herokuapp.com/api/v1/',
   headers: { 'Content-Type': 'application/json' },
 });
 

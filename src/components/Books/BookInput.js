@@ -49,7 +49,7 @@ const BookInput = () => {
       <hr />
       <h2>ADD NEW BOOK</h2>
       <form>
-        {validation && <p>{validation}</p>}
+        {validation && <p className="error_msg">{validation}</p>}
         <input
           type="text"
           placeholder="Book Title"

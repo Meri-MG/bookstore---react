@@ -31,8 +31,8 @@ const CommentsInput = (props) => {
       <div>
         <p>Add your review to the Book:</p>
       </div>
+      {validation && <p className="error_msg">{validation}</p>}
       <form>
-        {validation && <p>{validation}</p>}
         <input
           type="text"
           placeholder="Add a Comment..."
