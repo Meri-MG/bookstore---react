@@ -1,16 +1,19 @@
 
 # Book Store
 
-> A single-page app that allows users store some of their favorite books. It lets users add their favorite books to the list and post them to an API. This project was built using Javascript, React-redux
+> A single-page app that allows users store some of their favorite books. It lets users add their favorite books, remove, edit, update progress, add comments and categories. I built Rails Api specially for this project, the source code can be checked [here](https://github.com/Meri-MG/bookstore---back-end).
 > Design followed [Zeplin](https://app.zeplin.io/projects) guidelines.
 
-![Bookstore](https://raw.githubusercontent.com/Meri-MG/bookstore---react/style/Bookstore.png)
+![Bookstore](https://raw.githubusercontent.com/Meri-MG/bookstore---react/ruby_api/Bookstore.png)
+![categories](https://raw.githubusercontent.com/Meri-MG/bookstore---react/ruby_api/categories.png)
+![mobile](https://raw.githubusercontent.com/Meri-MG/bookstore---react/ruby_api/mobile.png)
 
 ## Built With
 
 - React
 - Redux
 - JavaScript
+- Rails Api
 - CSS
 - VS code
 
@@ -33,19 +36,29 @@
 
 - Choose a folder in your local machine where you want this repository to be copied
 
-- Clone this [repository](https://github.com/Meri-MG/bookstore---react) to your locaL machine with `git clone` command.
-It should look similar to this git clone https://github.com/smithj/azure-docs.git Enter your github credentials if prompted.
+- Clone this [repository](https://github.com/Meri-MG/bookstore---react) to your local machine 
+- ```
+  git clone git@github.com:Meri-MG/bookstore---react.git
+  ```
 
-- Navigate to bookstore---react directory.
+- Navigate to `cd bookstore---react`  directory.
 
-- On the command line, at the project's root, run 'npm install' to install app dependencies.
+- To install all the app dependencies on the command line run
+- ```
+  npm install
+  ``` 
+- To run app in the development mode run 
+- ```
+  npm start
+  ```
 
-- Next, run 'npm start' which will run the app in the development mode.
 
+## Author
 
-# 👤 Author - Meri Gogichashvili
-- GitHub: [Meri-MG](https://github.com/Meri-MG) 
-- LinkedIn: [Meri Gogichashvili](https://www.linkedin.com/feed/)
+:woman: **Meri Gogichashvili**
+
+- [GitHub](https://github.com/Meri-MG)
+- [LinkedIn](https://www.linkedin.com/in/meri-gogichashvili/)
 
 ## 🤝 Contributing
 - Contributions, issues, and feature requests are welcome!
@@ -55,7 +68,4 @@ It should look similar to this git clone https://github.com/smithj/azure-docs.gi
 Give a ⭐ if you like this project!
 
 # Acknowledgments
-Thanks to my teammates, learning and coding partners.
-
-# License
-This project is MIT licensed.
+Thanks to my learning partners.

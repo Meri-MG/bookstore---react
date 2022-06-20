@@ -1,16 +1,24 @@
-import { useDispatch } from 'react-redux';
-import { deleteCategoryFromAPI } from '../../redux/categories/categories';
+import { useDispatch, useSelector } from 'react-redux';
+import { getCategoryFromAPI, removeCategoryFromAPI } from '../../redux/categories/categories';
 
 const DeleteBtn = (props) => {
   const dispatch = useDispatch();
-  const id = props;
+  const categories = useSelector((state) => state.categoriesReducer);
+  const data = props;
+
+  const removeCategory = (id) => {
+    dispatch(removeCategoryFromAPI(id));
+    dispatch(getCategoryFromAPI());
+    data.setState(categories);
+  };
+
   return (
     <>
       <button
         type="button"
-        className="remove-button"
-        onClick={() => dispatch(deleteCategoryFromAPI(id.id))}
-        id={id.id}
+        className="remove-button category"
+        onClick={() => removeCategory(data.id)}
+        id={data.id}
       >
         Remove
       </button>

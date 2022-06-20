@@ -1,11 +1,12 @@
-import axios from 'axios';
+import getData from '../../api/api';
 
 const GET_CATEGORY = 'bookStore/books/GET_CATEGORY';
+const GET_CATEGORY_FAILURE = 'bookStore/books/GET_CATEGORY_FAILURE';
 const ADD_CATEGORY = 'bookStore/books/ADD_CATEGORY';
-const DELETE_CATEGORY = 'bookStore/books/DELETE_CATEGORY';
+const ADD_CATEGORY_FAILURE = 'bookStore/books/ADD_CATEGORY_FAILURE';
+const REMOVE_CATEGORY_SUCCESS = 'bookStore/books/REMOVE_CATEGORY_SUCCESS';
+const REMOVE_CATEGORY_FAILURE = 'bookStore/books/REMOVE_CATEGORY_FAILURE';
 const initialState = [];
-
-const baseURL2 = 'http://18.197.248.204:2020/api/category';
 
 export const getCategory = (payload) => ({
   type: GET_CATEGORY,
@@ -17,29 +18,44 @@ export const addCategory = (payload) => ({
   payload,
 });
 
-export const deleteCategory = (payload) => ({
-  type: DELETE_CATEGORY,
+export const removeCategory = (payload) => ({
+  type: REMOVE_CATEGORY_SUCCESS,
   payload,
 });
 
 export const getCategoryFromAPI = () => async (dispatch) => {
-  const category = await axios.get(`${baseURL2}/getAll`);
-  dispatch(getCategory(category));
+  try {
+    await getData('categories/').then((response) => {
+      const categories = response.data;
+      dispatch(getCategory(categories));
+    });
+  } catch (error) {
+    dispatch({ type: GET_CATEGORY_FAILURE, error });
+  }
 };
 
 export const sendCategoryToAPI = (payload) => async (dispatch) => {
   const { name } = payload;
-
-  const newCategory = {
+  const category = {
     name,
   };
-  await axios.post(`${baseURL2}/create`, newCategory);
-  dispatch(addCategory(payload));
+  try {
+    await getData.post('categories/', category);
+    dispatch(addCategory(payload));
+  } catch (error) {
+    dispatch({ type: ADD_CATEGORY_FAILURE, error });
+  }
 };
 
-export const deleteCategoryFromAPI = (id) => async (dispatch) => {
-  await axios.delete(`${baseURL2}/delete?id=${id}`);
-  dispatch(deleteCategory({ id }));
+export const removeCategoryFromAPI = (id) => async (dispatch) => {
+  try {
+    dispatch(removeCategory(id));
+    await getData
+      .delete(`categories/${id}`)
+      .then((response) => dispatch({ type: REMOVE_CATEGORY_SUCCESS, response }));
+  } catch (error) {
+    dispatch({ type: REMOVE_CATEGORY_FAILURE, error });
+  }
 };
 
 const reducer = (state = initialState, action) => {
@@ -47,8 +63,8 @@ const reducer = (state = initialState, action) => {
     case ADD_CATEGORY:
       return [...state, action.payload];
     case GET_CATEGORY:
-      return [...action.payload.data];
-    case DELETE_CATEGORY:
+      return [...action.payload];
+    case REMOVE_CATEGORY_SUCCESS:
       return state.filter((category) => category.id !== action.payload.id);
     default:
       return state;

@@ -4,12 +4,12 @@ import DeleteBtn from './DeleteBtn';
 const CategoryItem = (props) => {
   const category = props;
   return (
-    <div className="categoryItemCont">
-      <ul className="categoryItem">
-        <li className="category">{category.data.name}</li>
-        <DeleteBtn id={category.data.id} />
-      </ul>
-    </div>
+    <>
+      <div className="item_container">
+        <p>{category.data.name}</p>
+        <DeleteBtn id={category.data.id} setState={category.setState} />
+      </div>
+    </>
   );
 };
 

@@ -1,25 +1,21 @@
-import { useDispatch } from 'react-redux';
-import { deleteBookFromAPI } from '../../redux/books/books';
+import { useDispatch, useSelector } from 'react-redux';
+import { removeBookFromApi, getBookFromAPI } from '../../redux/books/books';
 
 const RemoveBtn = (props) => {
+  const data = useSelector((state) => state.booksReducer);
   const dispatch = useDispatch();
+  const book = props;
 
-  const id = props;
+  const removeBook = (id) => {
+    dispatch(removeBookFromApi(id));
+    dispatch(getBookFromAPI());
+    book.setState(data);
+  };
+
   return (
     <div>
-      <button type="button" className="remove-button">
-        Comments
-      </button>
-      <button
-        type="button"
-        className="remove-button"
-        onClick={() => dispatch(deleteBookFromAPI(id.id))}
-        id={id.id}
-      >
+      <button type="button" className="remove-button" onClick={() => removeBook(book.id)} id={book.id}>
         Remove
-      </button>
-      <button type="button" className="remove-button">
-        Edit
       </button>
     </div>
   );

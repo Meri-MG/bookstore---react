@@ -1,27 +1,43 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import { sendBookToAPI } from '../../redux/books/books';
 import { getCategoryFromAPI } from '../../redux/categories/categories';
 
 const BookInput = () => {
-  const [value, setValue] = useState('');
+  const [title, setTitle] = useState('');
+  const [author, setAuthor] = useState('');
+  const [chapter, setChapter] = useState(0);
   const [category, setCategory] = useState('');
+  const [validation, setValidation] = useState();
 
   const dispatch = useDispatch();
-  const data = useSelector((state) => state.categoriesReducer);
-  console.log(data, 'this is data');
+  const navigate = useNavigate();
+  const categories = useSelector((state) => state.categoriesReducer);
 
   const submitBookToStore = (e) => {
     e.preventDefault();
-    const idDate = new Date().getTime().toString(36);
-    const newBook = {
-      id: idDate,
-      title: value,
+    const book = {
+      title,
+      author,
       category,
+      chapter,
     };
-    dispatch(sendBookToAPI(newBook));
-    setValue('');
+    dispatch(sendBookToAPI(book));
+    setTitle('');
+    setAuthor('');
+    setChapter(0);
     setCategory('');
+    let errors = validation;
+    if (title.trim() === '' || author.trim() === '' || chapter === null) {
+      errors = 'These fields cannot be empty';
+    } else if (title.trim().length < 3) {
+      errors = 'These fields cannot be less than 3 characters';
+    } else {
+      errors = '';
+      navigate('/');
+    }
+    setValidation(errors);
   };
 
   useEffect(() => {
@@ -33,17 +49,37 @@ const BookInput = () => {
       <hr />
       <h2>ADD NEW BOOK</h2>
       <form>
+        {validation && <p className="error_msg">{validation}</p>}
         <input
           type="text"
-          placeholder="Add a Book..."
-          value={value}
+          placeholder="Book Title"
+          value={title}
           name="title"
-          onChange={(e) => setValue(e.target.value)}
+          min={3}
+          onChange={(e) => setTitle(e.target.value)}
+          required
+        />
+        <input
+          type="text"
+          placeholder="Book Author"
+          value={author}
+          name="author"
+          min={3}
+          onChange={(e) => setAuthor(e.target.value)}
+          required
+        />
+        <input
+          type="number"
+          placeholder="Chapter"
+          pattern="[1-9]\d*(\s*[-/]\s*[1-9]\d*)?"
+          value={chapter}
+          name="chapter"
+          onChange={(e) => setChapter(e.target.value)}
           required
         />
         <select onChange={(e) => setCategory(e.target.value)} required>
           <option value="">Select a Category</option>
-          {data.map((category) => (
+          {categories.map((category) => (
             <option key={category.id} value={category.name}>
               {category.name}
             </option>

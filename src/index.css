@@ -7,7 +7,6 @@
 }
 
 body {
-  width: 100%;
   background-color: #f5f6fa;
   font-family: 'Roboto Slab', serif;
 }
@@ -21,8 +20,8 @@ body {
 
 .inner-nav-bar,
 .addBookCont,
-.categoriesInput,
-.categoryItemCont {
+.item_container,
+.input_container {
   width: 80%;
   margin: 2rem auto;
   display: flex;
@@ -42,15 +41,15 @@ body {
   text-transform: uppercase;
 }
 
-.nav-bar ul li a {
+.nav-bar .nav-link.inactive {
   color: #16161642;
 }
 
-.nav-bar ul li a:hover {
+.nav-bar .nav-link:hover {
   color: #121212;
 }
 
-.nav-bar ul li a:focus {
+.nav-bar .nav-link.active {
   color: #121212;
 }
 
@@ -64,14 +63,15 @@ body {
   color: #4386bf;
   margin-bottom: 1rem;
   font-size: 1rem;
-}
-
-.bookItem .category {
-  color: #272727;
   font-weight: bold;
 }
 
-.bookItem .title {
+.bookItem .category {
+  color: #adaaaa;
+  font-weight: bold;
+}
+
+.bookItem .book {
   font-size: 1.375rem;
   font-weight: bold;
   margin: 1rem 0;
@@ -90,7 +90,6 @@ body {
 }
 
 .bookItemCont {
-  height: 10rem;
   width: 80%;
   margin: 2rem auto;
   background-color: #fff;
@@ -126,17 +125,6 @@ body {
   cursor: pointer;
 }
 
-.round {
-  border-radius: 100%;
-  width: 80px;
-  border: 3px solid rgb(223, 211, 211);
-  height: 80px;
-  margin-top: 21px;
-  border-bottom: 3px solid #0290ff;
-  border-right: 3px solid #0290ff;
-  border-top: 3px solid #0290ff;
-}
-
 .wrapper-round {
   display: flex;
   border-right: 1px solid #e8e8e8;
@@ -165,17 +153,26 @@ body {
   color: #adaaaa;
   font-size: 1.25rem;
   margin: 1.5rem 0;
+  text-align: center;
 }
 
 .addBookCont form,
-.categoriesInput form {
+.input_container form,
+.modal_actions {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
+.addBookCont form,
+.modal_actions {
+  flex-direction: column;
+}
+
 .addBookCont input,
-.categoriesInput input {
+.input_container input,
+.modal_actions input,
+.modal_actions select {
   padding: 1rem 0 1rem 1.5rem;
   width: 50%;
   border: 1px solid #e8e8e8;
@@ -183,9 +180,22 @@ body {
   border-radius: 3px;
 }
 
+button {
+  cursor: pointer;
+}
+
+.addBookCont input,
+.addBookCont select,
+.addBookCont button,
+.modal_actions input,
+.modal_actions select,
+.modal_actions button {
+  margin: 1rem auto;
+}
+
 .addBookCont select {
   padding: 1rem 0 1rem 1.5rem;
-  width: 30%;
+  width: 50%;
   outline: none;
   color: #adaaaa;
   margin: 0 1.5rem;
@@ -195,15 +205,32 @@ body {
   cursor: pointer;
 }
 
+.addBookCont button {
+  width: 20%;
+}
+
+.modal_actions button {
+  width: 30%;
+}
+
 .addBookCont option {
   border: 1px solid #e8e8e8;
   color: #adaaaa;
   border-radius: 3px;
 }
 
-.input-add {
-  width: 15%;
-  border: none;
+.addBtn_container {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  width: 80%;
+  margin: 2rem auto;
+}
+
+.input-add,
+.add_btn {
+  width: 100%;
+  align-self: flex-end;
   padding: 1rem;
   background-color: #0290ff;
   color: #fff;
@@ -213,38 +240,317 @@ body {
   justify-content: center;
   border-radius: 3px;
   outline: none;
+  border: 1px solid #0290ff;
+  transition: 0.3s ease;
 }
 
-.addBookCont .input-add:hover {
+.add_btn {
+  width: 50%;
+}
+
+.input-add:hover,
+.add_btn:hover {
   background-color: #fff;
   color: #0290ff;
   border: 1px solid #0290ff;
 }
 
-button {
-  cursor: pointer;
-}
-
 /* categories styles */
-.categoriesInput {
+.input_container {
   flex-direction: column;
 }
 
-.categoriesInput p {
+.input_container p {
   margin: 2rem 0;
   font-size: 20px;
 }
 
-.categoriesInput input {
+.input_container input {
   width: 70%;
 }
 
-.categoryItemCont .categoryItem {
+.item_container {
   display: flex;
   justify-content: space-between;
   width: 40%;
+  align-items: flex-start;
   background-color: #fff;
   border-radius: 3px;
   border: 1px solid #e8e8e8;
   padding: 2rem;
+}
+
+.remove-button.category {
+  border-right: none;
+  padding: 0;
+}
+
+.btn_wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* ------modal ----- */
+
+.dark_bg {
+  background-color: rgba(0, 0, 0, 0.2);
+  width: 100%;
+  height: 120%;
+  z-index: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  position: absolute;
+}
+
+.centered {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 50%;
+  margin: 10rem auto;
+}
+
+.modal {
+  margin: 15rem auto;
+}
+
+.modal.progress_modal {
+  margin: 3rem auto;
+}
+
+.modal_actions {
+  position: absolute;
+  bottom: 2px;
+  width: 100%;
+  background-color: #fff;
+  padding: 2rem;
+  border-radius: 3px;
+}
+
+.input-add.cancel {
+  background-color: #fff;
+  color: #ff3e4e;
+  border: 1px solid #ff3e4e;
+}
+
+.input-add.cancel:hover {
+  color: #fff;
+  border: 1px solid #ff3e4e;
+  box-shadow: 0 10px 20px -10px rgba(255, 62, 78, 0.6);
+  transform: translateY(-5px);
+  background: #ff3e4e;
+}
+
+.input-add.save:hover {
+  transform: translateY(-5px);
+}
+
+.progress_para {
+  color: #272727;
+  font-weight: bold;
+  font-size: 1.3rem;
+  text-align: center;
+}
+
+.error_msg {
+  color: #ff3e4e;
+  font-size: 13px;
+  margin: 0;
+}
+
+.input_container .error_msg {
+  font-size: 13px;
+  margin: 0;
+}
+
+@media (max-width: 970px) {
+  .bookItemCont {
+    flex-direction: column;
+  }
+
+  .bookItem {
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+  }
+
+  .bookItem .author {
+    margin-bottom: 0;
+  }
+
+  .wrapper-round {
+    border-right: none;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 2rem;
+    padding: 0;
+  }
+
+  .current {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .centered {
+    width: 60%;
+  }
+}
+
+@media (max-width: 670px) {
+  .nav-bar .inner-nav-bar {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .nav-bar ul {
+    margin: 1rem auto;
+  }
+
+  .input_container form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .input_container p {
+    text-align: center;
+  }
+
+  .input_container button {
+    margin-top: 2rem;
+    align-self: center;
+  }
+
+  .item_container {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+  }
+
+  .item_container p {
+    margin-bottom: 1rem;
+  }
+
+  .remove-button {
+    margin-right: 0;
+    border-right: none;
+  }
+
+  .bookItemCont {
+    flex-direction: column;
+  }
+
+  .bookItem {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .book_info {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+  }
+
+  .current {
+    flex-direction: column;
+  }
+
+  .addBookCont button {
+    width: 30%;
+  }
+
+  .addBookCont input,
+  .addBookCont select {
+    width: 60%;
+  }
+
+  .centered {
+    width: 80%;
+  }
+
+  .modal.progress_modal {
+    margin: 7rem auto;
+  }
+
+  .modal.progress_modal button {
+    width: 40%;
+  }
+}
+
+@media (max-width: 400px) {
+  .wrapper-round {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .book_info,
+  .btn_wrapper {
+    width: 100%;
+    justify-content: center;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-bottom: 1rem;
+  }
+
+  .bookItemCont {
+    align-items: flex-start;
+  }
+
+  .current {
+    align-items: flex-start;
+  }
+
+  .nav-bar ul {
+    width: 80%;
+    margin: 1rem auto;
+  }
+
+  .addBookCont button {
+    width: 40%;
+  }
+
+  .addBookCont input,
+  .addBookCont select {
+    width: 80%;
+  }
+
+  .centered {
+    width: 300px;
+  }
+
+  .input-add.save,
+  .input-add.cancel {
+    width: 40%;
+  }
+
+  .progress_para {
+    font-size: 1rem;
+  }
+
+  .modal_actions {
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  .modal.progress_modal {
+    margin: 10rem auto;
+  }
+
+  .modal.progress_modal button {
+    width: 50%;
+  }
 }
