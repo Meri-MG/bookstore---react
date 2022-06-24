@@ -52,8 +52,7 @@ export const removeCommentFromAPI = (id, book) => async (dispatch) => {
   try {
     dispatch(removeComment(id, book));
     await getData
-      .delete(`books/${book}/comments/${id}`)
-      .then((response) => dispatch({ type: REMOVE_COMMENT_SUCCESS, response }));
+      .delete(`books/${book}/comments/${id}`);
   } catch (error) {
     dispatch({ type: REMOVE_COMMENT_FAILURE, error });
   }

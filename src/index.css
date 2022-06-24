@@ -367,6 +367,13 @@ button {
   margin: 0;
 }
 
+.addBookCont .input-add.link {
+  width: 70%;
+  background-color: transparent;
+  border: 1px solid #0290ff;
+  color: #0290ff;
+}
+
 @media (max-width: 970px) {
   .bookItemCont {
     flex-direction: column;

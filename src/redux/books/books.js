@@ -82,9 +82,7 @@ export const getBookFromAPI = () => async (dispatch) => {
 export const removeBookFromApi = (id) => async (dispatch) => {
   try {
     dispatch(removeBook(id));
-    await getData
-      .delete(`books/${id}`)
-      .then((response) => dispatch({ type: REMOVE_BOOK, response }));
+    await getData.delete(`books/${id}`);
   } catch (error) {
     dispatch({ type: REMOVE_BOOK_FAILURE, error });
   }

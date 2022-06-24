@@ -80,7 +80,7 @@ const EditBook = (props) => {
               ))}
             </select>
             <button
-              type="button"
+              type="submit"
               className="input-add save"
               onClick={updateBookToStore}
             >
