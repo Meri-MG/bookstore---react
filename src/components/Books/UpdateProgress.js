@@ -7,12 +7,12 @@ const UpdateProgress = (props) => {
   const [fromPage, setFromPage] = useState(0);
 
   const navigate = useNavigate();
-
   const total = toPage / fromPage / 0.01;
+  const result = Number.isNaN(total) ? 0 : total;
   const updateProgressOnBook = (e) => {
     e.preventDefault();
     navigate('/');
-    data.showProgressBar(Math.round(total));
+    data.showProgressBar(Math.round(result));
     data.setUpdate(false);
   };
 
@@ -46,7 +46,7 @@ const UpdateProgress = (props) => {
               required
             />
             <button
-              type="button"
+              type="submit"
               className="input-add save"
               onClick={updateProgressOnBook}
             >

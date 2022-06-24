@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { sendBookToAPI } from '../../redux/books/books';
 import { getCategoryFromAPI } from '../../redux/categories/categories';
 
@@ -55,6 +55,7 @@ const BookInput = () => {
           placeholder="Book Title"
           value={title}
           name="title"
+          id="title"
           min={3}
           onChange={(e) => setTitle(e.target.value)}
           required
@@ -85,9 +86,15 @@ const BookInput = () => {
             </option>
           ))}
         </select>
-        <button type="button" className="input-add" onClick={submitBookToStore}>
+        <button type="submit" className="input-add" onClick={submitBookToStore}>
           Add Book
         </button>
+        <Link to="/categories">
+          <button type="button" className="input-add link">
+            &gt; If there are no categories in the dropdown add one following
+            the link
+          </button>
+        </Link>
       </form>
     </div>
   );
